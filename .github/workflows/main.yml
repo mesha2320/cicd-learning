@@ -12,4 +12,10 @@ jobs:
         
       - name: Run a simple test
         run: echo "CI pipeline is working!"
+     
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: app.txt
   
