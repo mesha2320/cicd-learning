@@ -12,10 +12,17 @@ jobs:
         
       - name: Run a simple test
         run: echo "CI pipeline is working!"
+
+      - name: Use test secret
+        env:
+          MY_SECRET: ${{ secrets.MY_TEST_SECRET }}
+        run: echo "The secret is available to the pipeline"
      
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
           path: app.txt
+          
+     
   
