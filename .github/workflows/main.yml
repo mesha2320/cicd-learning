@@ -1,4 +1,5 @@
 name: My First CI Pipeline
+
 on:
   push:
     branches:
@@ -6,13 +7,14 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Run a simple test
         run: echo "CI pipeline is working!"
 
@@ -20,12 +22,9 @@ jobs:
         env:
           MY_SECRET: ${{ secrets.MY_TEST_SECRET }}
         run: echo "The secret is available to the pipeline"
-     
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
           path: cicd-app.txt
-          
-     
-  
