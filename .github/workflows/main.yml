@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,3 +29,20 @@ jobs:
         with:
           name: my-artifact
           path: cicd-app.txt
+     
+          
+  deploy_dev:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+          
+      - name: Deploy to DEV
+        run: echo "Deploying my-artifact to DEV..."
+
+      - name: Validate DEV
+        run: echo "DEV validation successful!"
