@@ -40,9 +40,20 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-artifact
-          
       - name: Deploy to DEV
         run: echo "Deploying my-artifact to DEV..."
-
-      - name: Validate DEV
-        run: echo "DEV validation successful!"
+        
+  deploy_test:
+    needs: deploy_dev
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+      - name: Deploy to TEST
+        run: echo "Deploying my-artifact to TEST..."
+      - name: Validate TEST
+        run: echo "TEST validation successful!"
+          
